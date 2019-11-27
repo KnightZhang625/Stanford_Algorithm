@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 def split_number(number):
 	length = len(number)
 	if length % 2 == 0:
@@ -6,6 +8,7 @@ def split_number(number):
 		index = int(length // 2 + 1)
 	return int(number[: index]), int(number[index :])
 
+@lru_cache()
 def multiply(x, y):
 	x = str(x)
 	y = str(y)
