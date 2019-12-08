@@ -37,9 +37,6 @@ def count_inversions(array):
 
 	array_a, count_1 = count_inversions(array[ : mid])
 	array_b, count_2 = count_inversions(array[mid : ])
-	print(array_a)
-	print(array_b)
-	input()
 	array_c, count_3 = count_sort(array_a, array_b)
 
 	return array_c, count_1 + count_2 + count_3
