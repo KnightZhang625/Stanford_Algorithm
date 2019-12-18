@@ -81,7 +81,7 @@ def brute_force(points):
 def closestSplitPair(px, py, delta):
 	mid_idx = len(px) // 2
 	x_bar = px[mid_idx]
-	candidates = [x for i, x in enumerate(py) if abs(x_bar.x - x.x) < delta and i != mid_idx]
+	candidates = [x for i, x in enumerate(py) if abs(x_bar.x - x.x) <= delta]
 	
 	best = delta
 	best_pair = None
