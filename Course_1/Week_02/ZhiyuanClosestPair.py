@@ -68,8 +68,8 @@ def ClosestPair(Array,LeftBound,RightBound):
             else:
                 i+=1
         # calculate 1:7
-        for i in range(len(temp)-8):
-            for j in range(i+1,i+8):
+        for i in range(len(temp)-1):
+            for j in range(i+1,min(i+8,len(temp))):
                 d=distance(temp[i],temp[j])
                 if d<delta:
                     delta=d
