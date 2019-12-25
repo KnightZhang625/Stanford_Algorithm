@@ -1,7 +1,6 @@
 import random
 
 def MySwap(MyArray,i,j):
-    
     temp = MyArray[i]
     MyArray[i] = MyArray[j]
     MyArray[j] = temp
