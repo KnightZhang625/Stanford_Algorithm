@@ -39,20 +39,3 @@ def rSelection(array, i):
 if __name__ == '__main__':
 	array = [5, 2, 1, 10, 20, 15, 12, 30, 6]
 	print(rSelection(array, 2))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
