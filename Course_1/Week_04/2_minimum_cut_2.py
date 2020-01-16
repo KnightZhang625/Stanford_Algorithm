@@ -1,5 +1,6 @@
 # coding:utf-8
 
+import time
 import codecs
 import random
 
@@ -33,7 +34,10 @@ def kargerCut(graph):
 	return mincut
 
 if __name__ == '__main__':
-	for _ in range(10000):
+	time_s = time.time()
+	for _ in range(40000):
 		graph = build_graph('kargerMinCut.txt')
 		mincut = kargerCut(graph)
 		print(mincut)
+	time_e = time.time()
+	print(time_e - time_s)
