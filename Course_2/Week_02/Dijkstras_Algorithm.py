@@ -72,9 +72,6 @@ def build_graph(path):
 
 if __name__ == '__main__':
   graph = build_graph('dijkstras_graph_text.txt')
-  # for key, value in graph.items():
-  #   print(key)
-  #   print(graph[key])
   
   distance, path = DIJKSTRA_ALGORITHM().find_sp(graph, Vertex('s'), Vertex('t'))
   print(distance)
