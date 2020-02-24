@@ -1,7 +1,9 @@
 # coding:utf-8
 
 import codecs
+import numpy as np
 from collections import defaultdict
+from heap_own import BinHeap
 
 class Vertex(object):
   def __init__(self, name):
@@ -54,7 +56,35 @@ class DIJKSTRA_ALGORITHM(object):
       else:
         break
     return reversed(path)
+  
+  @classmethod
+  def find_sp_efficiency(cls, graph, s, e):
+    cache = {}
+    cache[s] = 0
+    for head, tails in graph.items():
+      if head not in cache:
+        cache[head] = np.inf
+      for t in tails:
+        if t[0] not in cache:
+          cache[t[0]] = np.inf
 
+    heap = BinHeap()
+    heap.insert((s, 0))
+    cls.B[s] = None
+    while heap.currentSize > 0:
+      min_vertex = heap.delMin()
+      vertex, dist = min_vertex[0], min_vertex[1]
+      cls.A[vertex] = dist
+      for son in graph[vertex]:
+        cur_dist = dist + son[1]
+        if cur_dist < cache[son[0]] and son[0] not in cls.A:
+          heap.insert((son[0], cur_dist))
+          cls.B[son[0]] = vertex
+          cache[son[0]] = cur_dist
+    
+    path = cls.find_path(e)
+    return cls.A[e], path
+          
 def build_graph(path):
   graph = defaultdict(list)
 
@@ -73,7 +103,13 @@ def build_graph(path):
 if __name__ == '__main__':
   graph = build_graph('dijkstras_graph_text.txt')
   
-  distance, path = DIJKSTRA_ALGORITHM().find_sp(graph, Vertex('s'), Vertex('t'))
+  # # the naive way
+  # distance, path = DIJKSTRA_ALGORITHM().find_sp(graph, Vertex('s'), Vertex('t'))
+  # print(distance)
+  # for v in path:
+  #   print(v)
+  
+  distance, path = DIJKSTRA_ALGORITHM.find_sp_efficiency(graph, Vertex('s'), Vertex('t'))
   print(distance)
   for v in path:
     print(v)
