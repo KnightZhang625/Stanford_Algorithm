@@ -1,6 +1,9 @@
 # coding:utf-8
 
-def main(array):
+import time
+import random
+
+def dpSolve(array):
   cache = []
   cache.append(array[0])
   cache.append(array[1])
@@ -20,8 +23,24 @@ def main(array):
 
   return cache[length - 1], list(reversed(backtrace))
 
+def naiveSolve(array):
+  if len(array) == 1:
+    return array[0]
+  elif len(array) == 2:
+    return max(array[0], array[1])
+  else:
+    return max(naiveSolve(array[:-1]), naiveSolve(array[:-2]) + array[-1])
+
 if __name__ == '__main__':
-  array = [3, 6, 2, 1, 11]
-  res, backtrace = main(array)
+  array = [random.randint(0, 10000) for _ in range(35)]
+  time_s = time.time()
+  print(naiveSolve(array))
+  time_e = time.time()
+  print('Naive method costs: {}s.'.format(time_e - time_s))
+
+  time_s = time.time()
+  res, backtrace = dpSolve(array)
   print(res)
   print(backtrace)
+  time_e = time.time()
+  print('Dynamic Programming costs: {}s'.format(time_e - time_s))
