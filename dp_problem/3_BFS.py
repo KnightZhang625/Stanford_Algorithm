@@ -124,7 +124,7 @@ class Solution:
 		return -1
 
 if __name__ == '__main__':
-	# print(findMinDepth([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+	print(findMinDepth([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 	solution = Solution()
-	# print(solution.openLock(['8888'], '0009'))
+	print(solution.openLock(['8888'], '0009'))
 	print(solution.openLockFast(["0201","0101","0102","1212","2002"], '0202'))
